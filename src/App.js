@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import { Route, Routes } from 'react-router-dom';
-import Categories from './components/Categories';
 import Cart from './pages/Cart';
 
 function App() {
