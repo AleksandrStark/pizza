@@ -7,7 +7,7 @@ const Search = ({ searchValue, setSearchValue }) => {
 			<svg
 				className={styles.icon}
 				xmlns="http://www.w3.org/2000/svg"
-				enable-background="new 0 0 139 139"
+				enableBackground="new 0 0 139 139"
 				height="139px"
 				id="Find"
 				version="1.1"
