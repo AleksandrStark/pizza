@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import { SearchContext } from '../App';
 import Categories from '../components/Categories';
 import Pagination from '../components/pagination';
@@ -28,12 +29,15 @@ const Home = () => {
 		const category = categoryId > 0 ? `category=${categoryId}` : '';
 		const search = searchValue ? `&search=${searchValue}` : '';
 
-		fetch(
-			`https://62c8018a8c90491c2cac37d7.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-		)
-			.then((res) => res.json())
-			.then((arr) => setItems(arr));
-		setIsLoading(false);
+		axios
+			.get(
+				`https://62c8018a8c90491c2cac37d7.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+			)
+			.then((res) => {
+				setItems(res.data);
+				setIsLoading(false);
+			});
+
 		window.scrollTo(0, 0);
 	}, [categoryId, sort, searchValue, currentPage]);
 
