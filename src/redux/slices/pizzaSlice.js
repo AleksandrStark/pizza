@@ -35,7 +35,7 @@ export const pizzaSlice = createSlice({
 			state.status = 'success';
 		},
 		[fetchPizzas.rejected]: (state, action) => {
-			state.status = 'eror';
+			state.status = 'error';
 			state.items = [];
 		},
 	},

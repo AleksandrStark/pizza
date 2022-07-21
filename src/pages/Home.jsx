@@ -84,11 +84,7 @@ const Home = () => {
 		isMounted.current = true;
 	}, [categoryId, sort, currentPage]);
 
-	const pizzas = items.map((pizza) => (
-		<Link key={pizza.id} to={`/pizza/${pizza.id}`}>
-			<PizzaBlock {...pizza} />
-		</Link>
-	));
+	const pizzas = items.map((pizza) => <PizzaBlock {...pizza} key={pizza.id} />);
 	const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
 	return (
 		<>
