@@ -21,18 +21,21 @@ export const cartSlice = createSlice({
 			}, 0);
 		},
 		removeItem: (state, action) => {
+			const findItem = state.items.find((obj) => obj.id === action.payload);
 			state.items = state.items.filter((obj) => obj.id !== action.payload);
+			state.totalPrice -= findItem.price * findItem.count;
 		},
 
 		minusItem: (state, action) => {
 			const findItem = state.items.find((obj) => obj.id === action.payload);
 			if (findItem) {
 				findItem.count--;
+				state.totalPrice -= findItem.price;
 			}
 		},
 		clearItems: (state) => {
-			state.items = [];
 			state.totalPrice = 0;
+			state.items = [];
 		},
 	},
 });

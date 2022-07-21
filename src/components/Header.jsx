@@ -9,7 +9,6 @@ function Header() {
 	const totalCount = items.reduce((sum, item) => item.count + sum, 0);
 
 	const location = useLocation();
-	console.log(location);
 
 	return (
 		<div className="header">

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import qs from 'qs';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../App';
 import Categories from '../components/Categories';
 import Pagination from '../components/pagination';
