@@ -3,7 +3,6 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import { Route, Routes } from 'react-router-dom';
 import Cart from './pages/Cart';
-import React, { useState } from 'react';
 import FullPizza from './components/FullPizza';
 import MainLayout from './layouts/MainLayout';
 
