@@ -9,23 +9,21 @@ import Skeleton from '../components/pizzaBlock/Skeleton';
 import Sort, { sortList } from '../components/Sort';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+	selectFilter,
 	setCategoryId,
 	setCurrentPage,
 	setFilters,
 } from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/pizzaSlice';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 
 const Home = () => {
-	const { categoryId, sort, currentPage } = useSelector(
-		(state) => state.filter
-	);
-	const { items, status } = useSelector((state) => state.pizza);
+	const { categoryId, sort, currentPage, searchValue } =
+		useSelector(selectFilter);
+	const { items, status } = useSelector(selectPizzaData);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const isSearching = useRef(false);
 	const isMounted = useRef(false);
-
-	const { searchValue } = useContext(SearchContext);
 
 	const onChangeCategory = (id) => {
 		dispatch(setCategoryId(id));

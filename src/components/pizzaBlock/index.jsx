@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addItem } from '../../redux/slices/cartSlice';
+import { selectCartItemById } from '../../redux/slices/cartSlice';
 
 function PizzaBlock({ id, name, price, imageUrl, sizes, types }) {
 	const dispatch = useDispatch();
-	const cartItem = useSelector((state) =>
-		state.cart.items.find((obj) => obj.id === id)
-	);
+	const cartItem = useSelector(selectCartItemById(id));
 	const addedCount = cartItem ? cartItem.count : 0;
 
 	const pizzaTypes = ['тонкое', 'традиционное'];
