@@ -1,7 +1,7 @@
 import React from 'react';
 import NotFoundBlock from '../components/notFoundBlock';
 
-const NotFound = () => {
+const NotFound: React.FC = () => {
 	return (
 		<div>
 			<NotFoundBlock />

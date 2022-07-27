@@ -1,27 +1,41 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSort, setSort } from '../redux/slices/filterSlice';
+import {
+	selectSort,
+	setSort,
+	SortPropertyEnum,
+} from '../redux/slices/filterSlice';
 
-export const sortList = [
-	{ name: 'популярности (desc)', sortProperty: 'rating' },
-	{ name: 'популярности (asc)', sortProperty: '-rating' },
-	{ name: 'цене(desc)', sortProperty: 'price' },
-	{ name: 'цене (asc)', sortProperty: '-price' },
-	{ name: 'алфавиту(desc)', sortProperty: 'title' },
-	{ name: 'алфавиту(asc)', sortProperty: '-title' },
+type SortItem = {
+	name: string;
+	sortProperty: SortPropertyEnum;
+};
+
+type PopupClick = MouseEvent & {
+	path: Node[];
+};
+
+export const sortList: SortItem[] = [
+	{ name: 'популярности (desc)', sortProperty: SortPropertyEnum.RATING_DESC },
+	{ name: 'популярности (asc)', sortProperty: SortPropertyEnum.RATING_ASC },
+	{ name: 'цене(desc)', sortProperty: SortPropertyEnum.PRICE_DESC },
+	{ name: 'цене (asc)', sortProperty: SortPropertyEnum.PRICE_ASC },
+	{ name: 'алфавиту(desc)', sortProperty: SortPropertyEnum.TITLE_DESC },
+	{ name: 'алфавиту(asc)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
-function Sort() {
+const SortPopUp: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
 	const sort = useSelector(selectSort);
 	const dispatch = useDispatch();
 
-	const sortRef = useRef();
+	const sortRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		const handleClickOutside = (e) => {
-			if (!e.path.includes(sortRef.current)) {
+		const handleClickOutside = (e: MouseEvent) => {
+			const _e = e as PopupClick;
+			if (sortRef.current && !_e.path.includes(sortRef.current)) {
 				setOpen(false);
 			}
 		};
@@ -31,12 +45,8 @@ function Sort() {
 		};
 	}, []);
 
-	const onChangeSort = (sortType) => {
-		dispatch(setSort(sortType));
-	};
-
-	const onClickListItem = (obj) => {
-		onChangeSort(obj);
+	const onClickListItem = (obj: SortItem) => {
+		dispatch(setSort(obj));
 		setOpen(false);
 	};
 	return (
@@ -83,6 +93,6 @@ function Sort() {
 			)}
 		</div>
 	);
-}
+};
 
-export default Sort;
+export default SortPopUp;
