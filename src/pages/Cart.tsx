@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartEmpty from '../components/CartEmpty';
-import CartItem from '../components/CartItem';
+import CartItem from '../components/CartItemBlock';
 import { clearItems, selectCart } from '../redux/slices/cartSlice';
 
 const Cart: React.FC = () => {
