@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import pizzaLogo from '../assets/img/pizza-logo.svg';
 import Search from './search';
@@ -14,6 +15,16 @@ function Header() {
 
 	const location = useLocation();
 
+	const isMounted = useRef(false);
+
+	useEffect(() => {
+		if (isMounted.current) {
+			const json = JSON.stringify(items);
+			localStorage.setItem('cart', json);
+		}
+		isMounted.current = true;
+	}, [items]);
+
 	return (
 		<div className="header">
 			<div className="container">
@@ -26,7 +37,7 @@ function Header() {
 						</div>
 					</div>
 				</Link>
-				<Search />
+				{location.pathname !== '/cart' && <Search />}
 				<div className="header__cart">
 					{location.pathname !== '/cart' && (
 						<Link to="/cart" className="button button--cart">

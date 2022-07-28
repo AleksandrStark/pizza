@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import Categories from '../components/Categories';
@@ -8,7 +8,6 @@ import Skeleton from '../components/pizzaBlock/Skeleton';
 import Sort, { sortList } from '../components/Sort';
 import { useSelector } from 'react-redux';
 import {
-	FilterSliceState,
 	selectFilter,
 	setCategoryId,
 	setCurrentPage,
@@ -30,9 +29,9 @@ const Home: React.FC = () => {
 	const isSearching = useRef(false);
 	const isMounted = useRef(false);
 
-	const onChangeCategory = (idx: number) => {
+	const onChangeCategory = useCallback((idx: number) => {
 		dispatch(setCategoryId(idx));
-	};
+	}, []);
 	const onChangePage = (page: number) => {
 		dispatch(setCurrentPage(page));
 	};
@@ -101,7 +100,7 @@ const Home: React.FC = () => {
 					value={categoryId}
 					onChangeCategory={(id: number) => onChangeCategory(id)}
 				/>
-				<Sort />
+				<Sort value={sort} />
 			</div>
 			<h2 className="content__title">Все пиццы</h2>
 			{status === 'error' ? (
