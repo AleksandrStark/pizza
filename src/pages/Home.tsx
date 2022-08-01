@@ -8,16 +8,13 @@ import Skeleton from '../components/pizzaBlock/Skeleton';
 import Sort, { sortList } from '../components/Sort';
 import { useSelector } from 'react-redux';
 import {
-	selectFilter,
 	setCategoryId,
 	setCurrentPage,
 	setFilters,
-} from '../redux/slices/filterSlice';
-import {
-	fetchPizzas,
-	SearchPizzaParams,
-	selectPizzaData,
-} from '../redux/slices/pizzaSlice';
+} from '../redux/slices/filter/slice';
+import { selectFilter } from '../redux/slices/filter/selectors';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizza/slice';
+import { SearchPizzaParams } from '../redux/slices/pizza/types';
 import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {

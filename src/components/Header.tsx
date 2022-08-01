@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import pizzaLogo from '../assets/img/pizza-logo.svg';
 import Search from './search';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../redux/slices/cartSlice';
+import { selectCart } from '../redux/slices/cart/selectors';
 
 function Header() {
 	const { totalPrice, items } = useSelector(selectCart);
